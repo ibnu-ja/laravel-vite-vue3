@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { inject, ref } from 'vue'
+import { computed, inject, ref } from 'vue'
 import { useForm, usePage } from '@inertiajs/inertia-vue3'
 import { Jetstream } from '@/types/inertia-props'
 import ValidationErrors from '@/views/components/ValidationErrors.vue'
@@ -17,7 +17,7 @@ const form = useForm({
   password_confirmation: '',
   terms: false
 })
-const jetstream = usePage().props.value.jetstream as Jetstream
+const jetstream = computed(() => usePage().props.value.jetstream as Jetstream)
 
 function submit () {
   form.post(route('register'), {

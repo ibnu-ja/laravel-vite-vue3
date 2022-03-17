@@ -7,10 +7,14 @@ import LogoutOtherBrowserSessionsForm from '@/views/pages/Profile/Partials/Logou
 import TwoFactorAuthenticationForm from '@/views/pages/Profile/Partials/TwoFactorAuthenticationForm.vue'
 import UpdatePasswordForm from '@/views/pages/Profile/Partials/UpdatePasswordForm.vue'
 import UpdateProfileInformationForm from '@/views/pages/Profile/Partials/UpdateProfileInformationForm.vue'
+import { computed } from 'vue'
 import { usePage } from '@inertiajs/inertia-vue3'
 
-const jetstream = usePage().props.value.jetstream as Jetstream
-const user = usePage().props.value.user as User
+const jetstream = computed(() => usePage().props.value.jetstream as Jetstream)
+// const page = usePage()
+
+const user = computed(() => usePage().props.value.user as User)
+// const user = ref(computed(() => usePage().props.value.user))
 defineProps<{
   sessions: any[]
 }>()
@@ -52,7 +56,7 @@ defineProps<{
         <template v-if="jetstream.hasAccountDeletionFeatures">
           <jet-section-border />
 
-          <delete-user-form class="mt-10 sm:mt-0" />
+          <delete-user-form />
         </template>
       </div>
     </div>
