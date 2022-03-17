@@ -1,6 +1,5 @@
 
 <script lang="ts" setup>
-/* eslint-disable no-unused-vars */
 import { Jetstream, User } from '@/types/inertia-props'
 import { computed, inject } from 'vue'
 import { Link as inertiaLink, usePage } from '@inertiajs/inertia-vue3'
@@ -86,26 +85,24 @@ function logout () {
       >
         <v-list-item>
           <v-list-item-avatar left>
-            <img
-              :src="user.profile_photo_url"
-              :alt="user.name"
-            >
+            <v-avatar size="small">
+              <v-img :src="user.profile_photo_url" />
+            </v-avatar>
           </v-list-item-avatar>
-        </v-list-item>
-        <v-list-item>
           <v-list-item-header>
-            <v-list-item-title>{{ user.name }}</v-list-item-title>
-            <v-list-item-subtitle>
-              {{ user.email }}
-            </v-list-item-subtitle>
+            <v-list-item-title v-text="user.name" />
+            <v-list-item-subtitle v-text="user.email" />
           </v-list-item-header>
         </v-list-item>
+        <v-divider />
         <inertia-link
           class="nostyle"
           :href="route('dashboard')"
         >
           <v-list-item
+            link
             :active="route().current('dashboard')"
+            active-color="primary"
           >
             <v-list-item-avatar left>
               <v-icon>mdi-view-dashboard</v-icon>
@@ -123,6 +120,7 @@ function logout () {
             v-if="jetstream.hasApiFeatures"
             link
             :active="route().current('api-tokens.index')"
+            active-color="primary"
           >
             <v-list-item-avatar left>
               <v-icon>mdi-api</v-icon>
@@ -141,17 +139,28 @@ function logout () {
 
           <inertia-link
             class="nostyle"
-            :href="route('teams.create')"
+            :href="route('teams.show', user.current_team)"
           >
             <v-list-item
               link
+              :active="route().current('teams.show')"
+              active-color="primary"
             >
               <v-list-item-avatar left>
                 <v-icon>mdi-account-multiple-outline</v-icon>
               </v-list-item-avatar>
               <v-list-item-title>Team Settings</v-list-item-title>
             </v-list-item>
+          </inertia-link>
+
+          <inertia-link
+            class="nostyle"
+            :href="route('teams.create')"
+          >
             <v-list-item
+              link
+              :active="route().current('teams.create')"
+              active-color="primary"
               v-if="jetstream.canCreateTeams"
             >
               <v-list-item-avatar left>
@@ -196,6 +205,7 @@ function logout () {
           <v-list-item
             link
             :active="route().current('profile.show')"
+            active-color="primary"
           >
             <v-list-item-avatar left>
               <v-icon>mdi-account</v-icon>
@@ -214,8 +224,8 @@ function logout () {
       </v-list>
     </v-navigation-drawer>
 
-    <v-main class="mt-6">
-      <v-container class="pa-0 pa-sm-2">
+    <v-main>
+      <v-container>
         <slot />
       </v-container>
     </v-main>
