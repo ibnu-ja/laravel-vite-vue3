@@ -6,7 +6,7 @@ module.exports = {
     'vue/setup-compiler-macros': true
   },
   extends: [
-    'plugin:vue3/strongly-recommended',
+    'plugin:vue/vue3-strongly-recommended',
     'standard'
   ],
   parserOptions: {
@@ -22,6 +22,7 @@ module.exports = {
     'vue/multi-word-component-names': 'off',
     'sort-imports': 'error',
     indent: 'off',
-    '@typescript-eslint/indent': ['error', 2] // 2
+    '@typescript-eslint/indent': ['error', 2],
+    'vue/require-default-prop': 'off'
   }
 }
