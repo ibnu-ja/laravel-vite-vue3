@@ -6,7 +6,7 @@ module.exports = {
     'vue/setup-compiler-macros': true
   },
   extends: [
-    'plugin:vue/strongly-recommended',
+    'plugin:vue3/strongly-recommended',
     'standard'
   ],
   parserOptions: {
