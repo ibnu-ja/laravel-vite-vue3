@@ -22,10 +22,7 @@ const { theme } = storeToRefs(useUserStore())
     >
       <v-spacer />
 
-      <v-menu
-        offset-y
-        style="z-index: 1020;"
-      >
+      <v-menu offset-y>
         <template #activator="{props}">
           <v-btn
             icon
