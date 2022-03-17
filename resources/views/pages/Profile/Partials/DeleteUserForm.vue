@@ -30,17 +30,15 @@
               Please enter your password to confirm you would like to permanently
               delete your account.
 
-              <div class="mt-4">
-                <v-text-field
-                  v-model="form.password"
-                  type="password"
-                  class="mt-1"
-                  label="Password"
-                  ref="password"
-                  variant="outlined"
-                  :error-messages="Object.values(form.errors)"
-                />
-              </div>
+              <v-text-field
+                class="mt-4"
+                v-model="form.password"
+                type="password"
+                label="Password"
+                ref="password"
+                variant="outlined"
+                :error-messages="Object.values(form.errors)"
+              />
             </v-card-text>
 
             <v-card-actions class="px-6 py-4">
