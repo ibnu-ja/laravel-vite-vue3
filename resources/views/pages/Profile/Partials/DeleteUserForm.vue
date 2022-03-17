@@ -80,29 +80,29 @@ import { useForm } from '@inertiajs/inertia-vue3'
 
 const route : any = inject('route')
 const confirmingUserDeletion = ref(false)
-const form = ref(useForm({
+const form = useForm({
   password: ''
-}))
+})
 const password = ref<HTMLInputElement>()
 
 function confirmUserDeletion () {
   confirmingUserDeletion.value = true
-  // TODO call focus() and reset() when there is support
+  // TODO call focus() when there is support
   // setTimeout(() => password.value?.focus(), 300)
 }
 
 function deleteUser () {
-  form.value.delete(route('current-user.destroy'), {
+  form.delete(route('current-user.destroy'), {
     preserveScroll: true,
-    onSuccess: () => closeModal()
+    onSuccess: () => closeModal(),
     // onError: () => password.value?.focus(),
-    // onFinish: () => form.value.reset()
+    onFinish: () => form.reset()
   })
 }
 
 function closeModal () {
   confirmingUserDeletion.value = false
-  // form.value.reset()
+  form.reset()
 }
 
 // defineExpose(password)
