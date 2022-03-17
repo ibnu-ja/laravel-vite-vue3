@@ -8,8 +8,11 @@ export type User = {
   profile_photo_path?: string;
   created_at: Date;
   updated_at: Date;
-  profile_photo_url: string;
-  two_factor_enabled: boolean;
+  profile_photo_url?: string;
+  owned_teams?: any[];
+  current_team?: null;
+  all_teams?: any[];
+  two_factor_enabled?: boolean;
 }
 
 export type Jetstream = {
