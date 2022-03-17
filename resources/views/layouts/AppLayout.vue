@@ -36,7 +36,6 @@ function logout () {
   <v-app :theme="theme">
     <v-app-bar
       density="compact"
-      app
     >
       <v-app-bar-nav-icon
         size="small"
@@ -63,7 +62,6 @@ function logout () {
 
       <v-menu
         offset-y
-        style="z-index: 1020;"
       >
         <template #activator="{props}">
           <v-btn
@@ -125,29 +123,27 @@ function logout () {
             Manage Team
           </v-list-subheader>
 
-          <inertia-link 
-            class="nostyle" 
+          <inertia-link
+            class="nostyle"
             :href="route('teams.create')"
           >
             <v-list-item
-            link
-          >
-            <v-list-item-avatar left>
-              <v-icon>mdi-account-multiple-outline</v-icon>
-            </v-list-item-avatar>
-            <v-list-item-title>Team Settings</v-list-item-title>
-          </v-list-item>
-          <v-list-item
-            v-if="jetstream.canCreateTeams"
-          >
-            <v-list-item-avatar left>
-              <v-icon>mdi-account-multiple-plus-outline</v-icon>
-            </v-list-item-avatar>
-            <v-list-item-title>Create New Team</v-list-item-title>
-          </v-list-item>
+              link
+            >
+              <v-list-item-avatar left>
+                <v-icon>mdi-account-multiple-outline</v-icon>
+              </v-list-item-avatar>
+              <v-list-item-title>Team Settings</v-list-item-title>
+            </v-list-item>
+            <v-list-item
+              v-if="jetstream.canCreateTeams"
+            >
+              <v-list-item-avatar left>
+                <v-icon>mdi-account-multiple-plus-outline</v-icon>
+              </v-list-item-avatar>
+              <v-list-item-title>Create New Team</v-list-item-title>
+            </v-list-item>
           </inertia-link>
-
-        
 
           <v-list-subheader>
             Switch Teams
@@ -173,7 +169,6 @@ function logout () {
           </template>
         </template>
 
-        
         <v-list-subheader>
           Account
         </v-list-subheader>
@@ -194,7 +189,7 @@ function logout () {
             </v-list-item-title>
           </v-list-item>
         </inertia-link>
-          <v-list-item @click.prevent="logout">
+        <v-list-item @click.prevent="logout">
           <v-list-item-avatar left>
             <v-icon>mdi-exit-run</v-icon>
           </v-list-item-avatar>
