@@ -11,5 +11,6 @@ export const useUserStore = defineStore('user', {
     theme: undefined,
     selected: undefined,
     drawer: undefined
-  })
+  }),
+  persist: true
 })
