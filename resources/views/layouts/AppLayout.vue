@@ -2,8 +2,8 @@
 <script lang="ts" setup>
 /* eslint-disable no-unused-vars */
 import { Jetstream, User } from '@/types/inertia-props'
+import { computed, inject } from 'vue'
 import { Link as inertiaLink, usePage } from '@inertiajs/inertia-vue3'
-import { inject, ref, watch } from 'vue'
 import AppSettingsTheme from '@/views/layouts/settings/Theme.vue'
 import { Inertia } from '@inertiajs/inertia'
 import { storeToRefs } from 'pinia'
@@ -12,8 +12,8 @@ import { useUserStore } from '@/scripts/store/user'
 
 const route: any = inject('route')
 
-const jetstream = usePage().props.value.jetstream as Jetstream
-const user = usePage().props.value.user as User
+const jetstream = computed(() => usePage().props.value.jetstream as Jetstream)
+const user = computed(() => usePage().props.value.user as User)
 
 const { theme, drawer } = storeToRefs(useUserStore())
 
@@ -84,6 +84,22 @@ function logout () {
         nav
         density="compact"
       >
+        <v-list-item>
+          <v-list-item-avatar left>
+            <img
+              :src="user.profile_photo_url"
+              :alt="user.name"
+            >
+          </v-list-item-avatar>
+        </v-list-item>
+        <v-list-item>
+          <v-list-item-header>
+            <v-list-item-title>{{ user.name }}</v-list-item-title>
+            <v-list-item-subtitle>
+              {{ user.email }}
+            </v-list-item-subtitle>
+          </v-list-item-header>
+        </v-list-item>
         <inertia-link
           class="nostyle"
           :href="route('dashboard')"

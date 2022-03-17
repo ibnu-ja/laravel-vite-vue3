@@ -1,14 +1,14 @@
 <script setup lang="ts">
+import { computed, inject } from 'vue'
 import { Link as inertiaLink, usePage } from '@inertiajs/inertia-vue3'
 import AppSettingsTheme from '@/views/layouts/settings/Theme.vue'
 import { User } from '@/types/inertia-props'
-import { inject } from 'vue'
 import { storeToRefs } from 'pinia'
 import { useUserStore } from '@/scripts/store/user'
 
 const route: any = inject('route')
 
-const user = usePage().props.value.user as User
+const user = computed(() => usePage().props.value.user as User)
 
 const { theme } = storeToRefs(useUserStore())
 
