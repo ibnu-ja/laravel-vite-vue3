@@ -16,6 +16,7 @@
       </div>
     </template>
     <template #actions>
+      <!-- TODO add max width to dialog -->
       <v-dialog v-model="confirmingUserDeletion">
         <v-form @submit.prevent="deleteUser">
           <v-card>
