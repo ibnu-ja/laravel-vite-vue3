@@ -5,7 +5,7 @@ import { inject, ref } from 'vue'
 import ValidationErrors from '@/views/components/ValidationErrors.vue'
 import WebLayout from '@/views/layouts/WebLayout.vue'
 import { useDisplay } from 'vuetify'
-import { useForm } from '@inertiajs/inertia-vue3'
+import { useForm, Link as inertiaLink } from '@inertiajs/inertia-vue3'
 
 defineProps({
   canResetPassword: Boolean,
@@ -85,13 +85,13 @@ function submit () {
             </v-card-text>
             <v-card-actions>
               <v-spacer />
-              <!-- <inertia-link
+              <inertia-link
                 v-if="canResetPassword"
                 class="mx-4"
                 :href="route('password.request')"
               >
                 Forgot your password?
-              </inertia-link> -->
+              </inertia-link>
 
               <v-btn
                 color="secondary"
