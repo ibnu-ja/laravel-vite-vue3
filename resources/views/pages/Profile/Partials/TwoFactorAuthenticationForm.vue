@@ -97,10 +97,16 @@ function disableTwoFactorAuthentication () {
             code using your phone's authenticator application.
           </p>
 
-          <div
-            class="mt-4"
-            v-html="qrCode"
-          />
+          <v-sheet
+            class="my-4 mx-auto pa-4"
+            color="white"
+            max-width="224"
+          >
+            <div
+              class="text-center"
+              v-html="qrCode"
+            />
+          </v-sheet>
         </div>
 
         <div v-if="recoveryCodes.length > 0">
