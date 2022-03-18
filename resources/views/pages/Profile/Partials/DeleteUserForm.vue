@@ -1,3 +1,40 @@
+<script lang="ts" setup>
+import { inject, ref } from 'vue'
+import AppActionSection from '@/views/components/ActionSection.vue'
+import { useForm } from '@inertiajs/inertia-vue3'
+
+const route: any = inject('route')
+const confirmingUserDeletion = ref(false)
+const form = useForm({
+  password: ''
+})
+const password = ref<HTMLInputElement>()
+
+const showP = ref(false)
+
+function confirmUserDeletion () {
+  confirmingUserDeletion.value = true
+  // TODO call focus() when there is support
+  // setTimeout(() => password.value?.focus(), 300)
+}
+
+function deleteUser () {
+  form.delete(route('current-user.destroy'), {
+    preserveScroll: true,
+    onSuccess: () => closeModal(),
+    // onError: () => password.value?.focus(),
+    onFinish: () => form.reset()
+  })
+}
+
+function closeModal () {
+  confirmingUserDeletion.value = false
+  form.reset()
+}
+
+// defineExpose(password)
+</script>
+
 <template>
   <app-action-section>
     <template #title>
@@ -33,11 +70,13 @@
               <v-text-field
                 class="mt-4"
                 v-model="form.password"
-                type="password"
                 label="Password"
                 ref="password"
                 variant="outlined"
                 :error-messages="Object.values(form.errors)"
+                :append-icon="showP ? 'mdi-eye' : 'mdi-eye-off'"
+                :type="showP ? 'text' : 'password'"
+                @click:append="showP = !showP"
               />
             </v-card-text>
 
@@ -71,38 +110,3 @@
     </template>
   </app-action-section>
 </template>
-
-<script lang="ts" setup>
-import { inject, ref } from 'vue'
-import AppActionSection from '@/views/components/ActionSection.vue'
-import { useForm } from '@inertiajs/inertia-vue3'
-
-const route : any = inject('route')
-const confirmingUserDeletion = ref(false)
-const form = useForm({
-  password: ''
-})
-const password = ref<HTMLInputElement>()
-
-function confirmUserDeletion () {
-  confirmingUserDeletion.value = true
-  // TODO call focus() when there is support
-  // setTimeout(() => password.value?.focus(), 300)
-}
-
-function deleteUser () {
-  form.delete(route('current-user.destroy'), {
-    preserveScroll: true,
-    onSuccess: () => closeModal(),
-    // onError: () => password.value?.focus(),
-    onFinish: () => form.reset()
-  })
-}
-
-function closeModal () {
-  confirmingUserDeletion.value = false
-  form.reset()
-}
-
-// defineExpose(password)
-</script>
