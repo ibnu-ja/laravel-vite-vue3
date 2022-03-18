@@ -1,17 +1,12 @@
 
 <script lang="ts" setup>
+import { Link as inertiaLink, useForm } from '@inertiajs/inertia-vue3'
 import { inject, ref } from 'vue'
-// import Routes from '@/scripts/shims-Ziggy'
-import ValidationErrors from '@/views/components/ValidationErrors.vue'
+// import ValidationErrors from '@/views/components/ValidationErrors.vue'
 import WebLayout from '@/views/layouts/WebLayout.vue'
 import { useDisplay } from 'vuetify'
-import { useForm, Link as inertiaLink } from '@inertiajs/inertia-vue3'
 
-defineProps({
-  canResetPassword: Boolean,
-  // eslint-disable-next-line vue/require-default-prop
-  status: String
-})
+defineProps<{canResetPassword: boolean, status: string}>()
 
 const route: any = inject('route')
 
@@ -51,7 +46,7 @@ function submit () {
           <v-form @submit.prevent="submit">
             <v-card-title>Sign in to your account</v-card-title>
             <v-card-text>
-              <validation-errors class="mb-4" />
+              <!-- <validation-errors class="mb-4" /> -->
 
               <div
                 v-if="status"
@@ -63,6 +58,7 @@ function submit () {
                 v-model="form.email"
                 variant="outlined"
                 label="Email Address"
+                :error-messages="form.errors.email"
                 required
                 autofocus
               />
@@ -72,6 +68,7 @@ function submit () {
                 label="Password"
                 required
                 autocomplete="current-password"
+                :error-messages="form.errors.password"
                 :append-icon="showP ? 'mdi-eye' : 'mdi-eye-off'"
                 :type="showP ? 'text' : 'password'"
                 hint="At least 8 characters"
