@@ -1,6 +1,6 @@
 <script lang="ts" setup>
 import { inject, ref } from 'vue'
-import ValidationErrors from '@/views/components/ValidationErrors.vue'
+// import ValidationErrors from '@/views/components/ValidationErrors.vue'
 import WebLayout from '@/views/layouts/WebLayout.vue'
 import { useDisplay } from 'vuetify'
 import { useForm } from '@inertiajs/inertia-vue3'
@@ -45,7 +45,7 @@ function submit () {
           <v-form @submit.prevent="submit">
             <v-card-title>Reset Password</v-card-title>
             <v-card-text>
-              <validation-errors class="mb-4" />
+              <!-- <validation-errors class="mb-4" /> -->
               <v-text-field
                 v-model="form.email"
                 :error-messages="form.errors.email"
