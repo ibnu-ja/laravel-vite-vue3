@@ -1,4 +1,12 @@
 /* eslint-disable camelcase */
+export interface Membership {
+  team_id: number
+  user_id: number
+  role: string
+  created_at: string
+  updated_at: string
+}
+
 export type User = {
   id: number
   name: string
@@ -12,6 +20,7 @@ export type User = {
   owned_teams?: any[]
   current_team?: null
   all_teams?: any[]
+  membership?: Membership
   two_factor_enabled?: boolean
 }
 
