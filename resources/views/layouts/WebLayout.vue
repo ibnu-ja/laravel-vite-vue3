@@ -2,6 +2,7 @@
 import { computed, inject } from 'vue'
 import { Link as inertiaLink, usePage } from '@inertiajs/inertia-vue3'
 import AppSettingsTheme from '@/views/layouts/settings/Theme.vue'
+import JetstreamFlash from '../components/JetstreamFlashBanner.vue'
 import { User } from '@/types/inertia-props'
 import { storeToRefs } from 'pinia'
 import { useUserStore } from '@/scripts/store/user'
@@ -16,6 +17,7 @@ const { theme } = storeToRefs(useUserStore())
 
 <template>
   <v-app :theme="theme">
+    <jetstream-flash />
     <v-app-bar
       app
       fixed
@@ -105,8 +107,8 @@ const { theme } = storeToRefs(useUserStore())
       </template>
     </v-app-bar>
 
-    <v-main class="mt-6">
-      <v-container class="pa-0 pa-sm-2">
+    <v-main>
+      <v-container>
         <slot />
       </v-container>
     </v-main>

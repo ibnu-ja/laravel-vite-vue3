@@ -5,9 +5,9 @@ import { computed, inject } from 'vue'
 import { Link as inertiaLink, usePage } from '@inertiajs/inertia-vue3'
 import AppSettingsTheme from '@/views/layouts/settings/Theme.vue'
 import { Inertia } from '@inertiajs/inertia'
+import JetstreamFlash from '@/views/components/JetstreamFlashBanner.vue'
 import { storeToRefs } from 'pinia'
 import { useUserStore } from '@/scripts/store/user'
-// import JetstreamFlash from '@/views/components/JetstreamFlashBanner.vue'
 
 const route: any = inject('route')
 
@@ -33,6 +33,7 @@ function logout () {
 
 <template>
   <v-app :theme="theme">
+    <jetstream-flash />
     <v-app-bar
       density="compact"
     >
@@ -58,6 +59,8 @@ function logout () {
       >
         <slot name="header" />
       </v-toolbar-title>
+
+      <v-spacer />
 
       <v-menu
         offset-y
