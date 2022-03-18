@@ -112,7 +112,10 @@ function closeModal () {
       </v-dialog>
 
       <!-- Other Browser Sessions -->
-      <v-list v-if="sessions.length > 0">
+      <v-list
+        disabled
+        v-if="sessions.length > 0"
+      >
         <v-list-item
           :active="session.is_current_device"
           active-color="primary"
