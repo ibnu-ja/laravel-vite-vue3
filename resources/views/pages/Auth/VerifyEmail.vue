@@ -5,7 +5,7 @@ import WebLayout from '@/views/layouts/WebLayout.vue'
 import { useDisplay } from 'vuetify'
 import { useForm } from '@inertiajs/inertia-vue3'
 
-const route:any = inject('route')
+const route: any = inject('route')
 
 const form = useForm({})
 const { xs } = useDisplay()
