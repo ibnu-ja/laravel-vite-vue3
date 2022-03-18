@@ -48,6 +48,7 @@ function submit () {
               <validation-errors class="mb-4" />
               <v-text-field
                 v-model="form.email"
+                :error-messages="form.errors.email"
                 variant="outlined"
                 label="Email Address"
                 required
@@ -55,6 +56,7 @@ function submit () {
               />
               <v-text-field
                 v-model="form.password"
+                :error-messages="form.errors.password"
                 variant="outlined"
                 label="New Password"
                 required
@@ -66,6 +68,7 @@ function submit () {
               />
               <v-text-field
                 v-model="form.password_confirmation"
+                :error-messages="form.errors.password_confirmation"
                 variant="outlined"
                 label="Comfirn New Password"
                 required
