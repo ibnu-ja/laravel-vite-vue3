@@ -1,8 +1,7 @@
 <script lang="ts" setup>
+import { Link as InertiaLink, useForm, usePage } from '@inertiajs/inertia-vue3'
 import { computed, inject, ref } from 'vue'
-import { useForm, usePage } from '@inertiajs/inertia-vue3'
 import { Jetstream } from '@/types/inertia-props'
-import ValidationErrors from '@/views/components/ValidationErrors.vue'
 import WebLayout from '@/views/layouts/WebLayout.vue'
 import { useDisplay } from 'vuetify'
 
@@ -38,12 +37,15 @@ function submit () {
         md="6"
       >
         <v-card>
-          <v-form @submit.prevent="submit">
+          <v-form
+            @submit.prevent="submit"
+            :disabled="form.processing"
+          >
             <v-card-title>Sign Up with Email</v-card-title>
             <v-card-text>
-              <validation-errors class="mb-4" />
               <v-text-field
                 v-model="form.name"
+                :error-messages="form.errors.name"
                 required
                 autofocus
                 variant="outlined"
@@ -51,12 +53,14 @@ function submit () {
               />
               <v-text-field
                 v-model="form.email"
+                :error-messages="form.errors.email"
                 required
                 variant="outlined"
                 label="Email address"
               />
               <v-text-field
                 v-model="form.password"
+                :error-messages="form.errors.password"
                 variant="outlined"
                 label="Password"
                 required
@@ -68,6 +72,7 @@ function submit () {
               />
               <v-text-field
                 v-model="form.password_confirmation"
+                :error-messages="form.errors.password_confirmation"
                 variant="outlined"
                 label="Confirm Password"
                 required
@@ -77,12 +82,15 @@ function submit () {
                 hint="At least 8 characters"
                 @click:append="showCP = !showCP"
               />
-              <div v-if="jetstream.canManageTwoFactorAuthentication">
+              <div v-if="jetstream.hasTermsAndPrivacyPolicyFeature">
+                <!-- TODO checkbox slots & error messages-->
                 <v-checkbox
                   v-model="form.terms"
                   hide-details
+                  :error-messages="form.errors.terms"
+                  label="By signing up you agree to the Terms of Service and Privacy Policy"
                 >
-                  <template #label>
+                  <!-- <template #label>
                     <span @click.stop="">By signing up you agree to the <inertia-link
                       href="terms-of-service"
                       v-text="'Terms of Service'"
@@ -90,7 +98,7 @@ function submit () {
                       href="privacy-policy"
                       v-text="'Privacy Policy'"
                     /></span>
-                  </template>
+                  </template> -->
                 </v-checkbox>
               </div>
             </v-card-text>
@@ -105,7 +113,6 @@ function submit () {
               <v-btn
                 color="secondary"
                 type="submit"
-                :disabled="form.processing"
               >
                 Register
               </v-btn>
