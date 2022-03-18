@@ -3,7 +3,7 @@ import { Permission, Role, Team } from '@/types/team'
 import AppLayout from '@/views/layouts/AppLayout.vue'
 // import DeleteTeamForm from './Partials/DeleteTeamForm.vue'
 // import TeamMemberManager from './Partials/TeamMemberManager.vue'
-// import UpdateTeamNameForm from './Partials/UpdateTeamNameForm.vue'
+import UpdateTeamNameForm from './Partials/UpdateTeamNameForm.vue'
 
 defineProps<{team: Team, availableRoles: Role[], permissions: Permission}>()
 </script>
@@ -16,10 +16,10 @@ defineProps<{team: Team, availableRoles: Role[], permissions: Permission}>()
       </h2>
     </template>
 
-    <!-- <update-team-name-form
+    <update-team-name-form
       :team="team"
       :permissions="permissions"
-    /> -->
+    />
 
     <!-- <team-member-manager
       :team="team"
