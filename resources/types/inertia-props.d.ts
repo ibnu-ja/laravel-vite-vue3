@@ -37,15 +37,16 @@ export type Jetstream = {
   managesProfilePhotos?: boolean
 }
 
-export interface Socialstream {
-  show: boolean
-  providers: string[]
-  hasPassword: boolean
-  connectedAccounts: ConnectedAccount[]
-}
 export interface ConnectedAccount {
   id: number
   provider: string
   avatar_path: string
   created_at: string
+}
+
+export interface Socialstream {
+  show: boolean
+  providers: string[]
+  hasPassword: boolean
+  connectedAccounts: ConnectedAccount[]
 }
